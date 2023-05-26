@@ -20,6 +20,6 @@ class UsuarioController {
         await UsuarioModel.findByIdAndDelete(id);
         return res.status(200).json({"mensagem": "Usuário deletado com sucesso"});
     }
-
+    
 }
 module.exports= new UsuarioController(); 
