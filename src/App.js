@@ -15,6 +15,7 @@
 const express= require ("express"); //importa biblioteca express
 const app=express();
 const rotas=require ("./routes");
+const cors=require("cors")
                         // da start na biblioteca express
 // app.get("", (req, res)=>{ //o get é a requisição que lê os dados enviados do backend / unica função que o navegador executa
 //     return res.json({     //o post é a requisição que cria uma informação e envia para o back
@@ -34,9 +35,13 @@ const rotas=require ("./routes");
 //         message: "Função cadastro"
 //     })
 // })
+app.use(express.urlencoded({extended: true})); //piraja falou que não precisamos saber detalhes desse negócio
 app.use(express.json());
+app.use(cors()); //permite com que o front se conecte com o back na hora da linkagem.
 app.use(rotas);
-
+app.use("*",(req, res) => { //facilita encontrar problemas de rota MUITO IMPORTANTE
+    res.status(404).json({"message": `Rota '${req.baseUrl}' não encontrada`}); //tamo colocando dentro da string um valor dinâmico, que vai ser setado quando a requisição chegar. Sempre que isso ocorrer temos que usar a crase
+})
 module.exports = app;
 
 
