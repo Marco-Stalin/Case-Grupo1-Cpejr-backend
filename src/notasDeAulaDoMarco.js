@@ -5,10 +5,11 @@ AULA 8: VALIDATORS
 O validator vai validar as informações enviadas (se o email tem o formato de um email) 
 e chegar a completude das informações
 ->vamos usar a biblioteca zod e zod-express-middleware
-->
-->
-->
-->
+-> Validação antes da requisição chegar no controller
+AULA 10
+->validação a nível de banco de dados
+->vai ocorrer quando formos salvar algum dado no mongoDB
+->até então, usuários com o mesmo nome e email podem se logar paralelamente... isso não é legal
 ->
 ->
 ->
