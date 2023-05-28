@@ -5,7 +5,8 @@ class UsuarioController {
    async create(req, res){
     try { // se tiver algum problema no bloco de try, ele vai ser jogado no bloco de catch. Útil para evitar que o servidor quebre quando tentarem cadastrar um email/nome existente no sistema
         const usuario= await UsuarioModel.create(req.body); //funções de requisição para o BD tem que ser assíncronaas
-        res.status(200).json(usuario);
+        const{senha, ...novoUsuario} = usuario.toObject();
+        res.status(200).json(novoUsuario);
     } catch (error) {
         res.status(500).json({message: "Deu ruim aqui", error: error.message});
     }

@@ -13,10 +13,11 @@ AULA 10
 AULA 11 
 ->só deve existir uma sessão ativa por usuário
 ->daí vem a validação a nivel de BD dnv
-->
-->
-->
-->
+AULA 12
+-> criptografas senhas assim q são salvas no BD
+-> dá mais segurança no sistema
+-> para descriptografar ela no login do usuario vamos fazer no backend
+->além de criptografar a senha, é importante que ela não seja enviada como resposta de nenhuma requisição
 ->
 ->
 
