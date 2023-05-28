@@ -29,7 +29,11 @@ class SessoesController {
     async delete(req, res){ 
         try {
         const { id } = req.params;
-        await SessoesModel.findByIdAndDelete(id);
+        const sessaoEncontrada = await UsuarioModel.findById(id);
+           
+        if (!sessaoEncontrada) return res.status(404).json({message: "sessão não encontrada"}); //a ideia é ver se o usuario existe, se ele existir, atualiza, se não existir, avisa ao usuário que ele não existe
+       await sessaoEncontrada.deleteOne();
+
         res.status(200).json({"mensagem": "Sessão deletada com sucesso"});
         } catch (error) {
             res.status(500).json({message: "Deu ruim aqui", error: error.message});

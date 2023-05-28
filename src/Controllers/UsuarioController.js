@@ -22,7 +22,11 @@ class UsuarioController {
     async update(req, res){
         try {
         const { id } = req.params;
-        const usuario = await UsuarioModel.findByIdAndUpdate(id, req.body, {new:true});
+        const usuariosEncontrado = await UsuarioModel.findById(id);
+        if (!usuariosEncontrado) return res.status(404).json({message: "usuário não encontrado"}); //a ideia é ver se o usuario existe, se ele existir, atualiza, se não existir, avisa ao usuário que ele não existe
+        const usuario= await usuariosEncontrado.set(req.body).save() //se o usuario existir, vamosa fazer a atualização dos dados do usuário
+        //esse save vai pegar as alterações do usuário e salvar no banco de dados
+        // const usuario = await UsuarioModel.findByIdAndUpdate(id, req.body, {new:true});
         res.status(200).json(usuario);
         } catch (error) {
         res.status(500).json({message: "Deu ruim aqui", error: error.message});
@@ -32,7 +36,11 @@ class UsuarioController {
     async delete(req, res){
         try {
             const { id } = req.params;
-            await UsuarioModel.findByIdAndDelete(id);
+            const usuariosEncontrado = await UsuarioModel.findById(id);
+           
+            if (!usuariosEncontrado) return res.status(404).json({message: "usuário não encontrado"}); //a ideia é ver se o usuario existe, se ele existir, atualiza, se não existir, avisa ao usuário que ele não existe
+           await usuariosEncontrado.deleteOne();
+  
             res.status(200).json({"mensagem": "Usuário deletado com sucesso"});
         } catch (error) {
             res.status(500).json({message: "Deu ruim aqui", error: error.message});  
