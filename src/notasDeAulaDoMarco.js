@@ -10,8 +10,9 @@ AULA 10
 ->validação a nível de banco de dados
 ->vai ocorrer quando formos salvar algum dado no mongoDB
 ->até então, usuários com o mesmo nome e email podem se logar paralelamente... isso não é legal
-->
-->
+AULA 11 
+->só deve existir uma sessão ativa por usuário
+->daí vem a validação a nivel de BD dnv
 ->
 ->
 ->
