@@ -17,10 +17,10 @@ class AuthController {
         
         const{senha: hashedSenha, ...usuario}= usuarioEncontrado.toObject(); // esses ... são para compilar tudo oq está no usuariosEncontrados (menos a senha) no objeto payload
         
-        const token = jwt.sign({
-         usuario,
-        }, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRE_IN}
-        );
+        const token = jwt.sign(usuario,process.env.JWT_SECRET, {
+          expiresIn: process.env.JWT_EXPIRE_IN,
+        });
+        
         res.status(200).json({token});
       } catch (error) {
         res.status(500).json({message: "Deu ruim aqui", error: error.message});
