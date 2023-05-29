@@ -30,7 +30,13 @@ AULA 14
 -> esse token JWT nada mais é do que todas as informações do usuário compiladas e criptografadas em uma string
 ->esse token vai ser armazenado no front e sempre que o usuário precisar realizar uma requisição que requer autenticação, ele vai mandar, junto com os dados da requisição, o token JWT
 -> o server vai processar a requisição e vai tambem procurar se o token JWT daquela requisição que precisa de autenticação existe, e se é válido
-
+AULA 15
+->O fornt vai pagar o token e armazenar
+-> para toda requisição que necessitar de autenticação, ele envia os dados de requisição + token
+-> o server vai pegar a requisição e antes de processar ela, vai olhar se o token que ta junto dela é valido
+-> para fazer essa validação, vamos usar um middeware
+->um middleware é uma funçaõ que vai processar a requisição antes do controller... parece o validator
+->
 
 
 
