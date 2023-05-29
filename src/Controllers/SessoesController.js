@@ -1,8 +1,14 @@
 const SessoesModel=require("../Models/SessoesModel");
+const UsuarioModel = require("../Models/UsuarioModel");
 
 class SessoesController {
    async create(req, res){
     try {
+       const usuarioEncontrado = await UsuarioModel.findById(
+          req.body.id_usuario
+       );
+         if(!usuarioEncontrado) return res.status(404).json({message: "O usuário não foi encontrado"});
+
         const sessoes= await SessoesModel.create(req.body); //funções de requisição para o BD tem que ser assíncronas
         res.status(200).json(sessoes);
     } catch (error) {
@@ -28,8 +34,10 @@ class SessoesController {
     }
     async delete(req, res){ 
         try {
-        const { id } = req.params;
-        const sessaoEncontrada = await UsuarioModel.findById(id);
+        const { id_usuario } = req.params;
+        const sessaoEncontrada = await SessoesModel.findOne({
+            id_usuario,
+        });
            
         if (!sessaoEncontrada) return res.status(404).json({message: "sessão não encontrada"}); //a ideia é ver se o usuario existe, se ele existir, atualiza, se não existir, avisa ao usuário que ele não existe
        await sessaoEncontrada.deleteOne();
