@@ -24,8 +24,12 @@ AULA 13
 -> o arquivo .env não vai subir para o git. Ele vai ser guarddado num local seguro. 
 ->quando necessário fazer algum desenvolvimento local no repositório a gente pega o .env e coloca na pasta do projeto
 ->  se esse arquivo for pro git, qualquer um vai poder pegar variáveis que não deveriam ser públicas
-
-
+AULA 14
+->no front o usuário coloca email e senha, envia uma requisição de login com esse email e senha
+->o servidor vai processar esse email e senha e se tudo estiver correto ele vai mandar um tokenJWT
+-> esse token JWT nada mais é do que todas as informações do usuário compiladas e criptografadas em uma string
+->esse token vai ser armazenado no front e sempre que o usuário precisar realizar uma requisição que requer autenticação, ele vai mandar, junto com os dados da requisição, o token JWT
+-> o server vai processar a requisição e vai tambem procurar se o token JWT daquela requisição que precisa de autenticação existe, e se é válido
 
 
 
